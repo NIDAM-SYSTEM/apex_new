@@ -1,0 +1,148 @@
+/* ── Google Fonts — must be first import ──────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base Reset & Defaults ───────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-apex-bg text-apex-dark font-body;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+    line-height: 1.25;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+/* ── Component Utilities ─────────────────────────────────────────────────── */
+@layer components {
+
+  /* Container */
+  .platform-container {
+    @apply max-w-platform mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Primary Button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-apex-blue text-white font-body font-medium text-sm
+           px-5 py-2.5 rounded-btn
+           transition-all duration-200
+           hover:bg-apex-blue-hover
+           focus:outline-none focus:ring-2 focus:ring-apex-blue focus:ring-offset-2
+           active:scale-[0.98];
+  }
+
+  .btn-primary-lg {
+    @apply btn-primary px-6 py-3 text-base;
+  }
+
+  /* Secondary / Ghost Button */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-transparent text-apex-blue font-body font-medium text-sm
+           px-5 py-2.5 rounded-btn border border-apex-blue
+           transition-all duration-200
+           hover:bg-blue-50
+           focus:outline-none focus:ring-2 focus:ring-apex-blue focus:ring-offset-2
+           active:scale-[0.98];
+  }
+
+  /* Card */
+  .card {
+    @apply bg-apex-surface rounded-card shadow-card border border-apex-border-light;
+  }
+
+  /* Section Label */
+  .section-label {
+    @apply text-xs font-body font-semibold uppercase tracking-widest text-apex-blue;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-1 text-xs font-body font-medium
+           px-2 py-0.5 rounded-full;
+  }
+
+  .badge-new {
+    @apply badge bg-amber-50 text-amber-700 border border-amber-200;
+  }
+
+  .badge-exam {
+    @apply badge bg-red-50 text-red-700 border border-red-200;
+  }
+
+  .badge-td {
+    @apply badge bg-blue-50 text-blue-700 border border-blue-200;
+  }
+
+  .badge-notes {
+    @apply badge bg-green-50 text-green-700 border border-green-200;
+  }
+
+  .badge-tp {
+    @apply badge bg-purple-50 text-purple-700 border border-purple-200;
+  }
+
+  /* Focus visible ring */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2
+           focus-visible:ring-apex-blue focus-visible:ring-offset-2;
+  }
+}
+
+/* ── Custom Scrollbar ─────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* ── Mobile menu transition ───────────────────────────────────────────────── */
+.mobile-menu-enter {
+  animation: slideDown 0.2s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
