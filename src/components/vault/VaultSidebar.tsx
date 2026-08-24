@@ -1,6 +1,7 @@
 import { ChevronRight, FolderOpen, BookOpen } from 'lucide-react';
 import { branches } from '../../data/mockData';
 import { getModuleFileCount } from '../../data/vaultData';
+import type { Branch, Semester, Module } from '../../types';
 
 interface VaultSidebarProps {
   selectedBranch:   string;
@@ -35,7 +36,7 @@ export default function VaultSidebar({
       {/* Branch list */}
       <nav>
         <ul role="tree" aria-label="Filières">
-          {branches.map((branch) => {
+          {branches.map((branch: Branch) => {
             const isBranchActive = selectedBranch === branch.id;
 
             return (
@@ -78,7 +79,7 @@ export default function VaultSidebar({
                     role="group"
                     aria-label={`Semestres de ${branch.label}`}
                   >
-                    {branch.semesters.map((sem) => {
+                    {branch.semesters.map((sem: Semester) => {
                       const isSemActive = selectedSemester === sem.id;
 
                       return (
@@ -113,7 +114,7 @@ export default function VaultSidebar({
                               role="group"
                               aria-label={`Modules de ${sem.label}`}
                             >
-                              {sem.modules.map((mod) => {
+                              {sem.modules.map((mod: Module) => {
                                 const isModActive = selectedModule === mod.id;
                                 const count = getModuleFileCount(mod.id);
 

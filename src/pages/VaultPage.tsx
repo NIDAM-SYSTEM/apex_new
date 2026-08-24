@@ -11,6 +11,7 @@ import {
   getModuleProfessor,
 } from '../data/vaultData';
 import type { VaultFileType } from '../data/vaultData';
+import type { Branch, Semester, Module } from '../types';
 
 // ─── Tab config ───────────────────────────────────────────────────────────────
 const TABS: { id: VaultFileType | 'all'; label: string }[] = [
@@ -62,9 +63,9 @@ export default function VaultPage() {
   const [activeTab,        setActiveTab]        = useState<VaultFileType | 'all'>('all');
 
   // Derive labels from IDs
-  const branchData   = branches.find(b => b.id === selectedBranch);
-  const semesterData = branchData?.semesters.find(s => s.id === selectedSemester);
-  const moduleData   = semesterData?.modules.find(m => m.id === selectedModule);
+  const branchData   = branches.find((b: Branch) => b.id === selectedBranch);
+  const semesterData = branchData?.semesters.find((s: Semester) => s.id === selectedSemester);
+  const moduleData   = semesterData?.modules.find((m: Module) => m.id === selectedModule);
 
   const branchLabel   = branchData?.label   ?? '';
   const semesterLabel = semesterData?.label ?? '';
@@ -82,7 +83,7 @@ export default function VaultPage() {
   // When sidebar navigates — cascade resets
   const handleSelectBranch = (id: string) => {
     setSelectedBranch(id);
-    const branch    = branches.find(b => b.id === id);
+    const branch    = branches.find((b: Branch) => b.id === id);
     const firstSem  = branch?.semesters[0];
     const firstMod  = firstSem?.modules[0];
     setSelectedSemester(firstSem?.id ?? '');
@@ -92,8 +93,8 @@ export default function VaultPage() {
 
   const handleSelectSemester = (id: string) => {
     setSelectedSemester(id);
-    const branch   = branches.find(b => b.id === selectedBranch);
-    const sem      = branch?.semesters.find(s => s.id === id);
+    const branch   = branches.find((b: Branch) => b.id === selectedBranch);
+    const sem      = branch?.semesters.find((s: Semester) => s.id === id);
     const firstMod = sem?.modules[0];
     setSelectedModule(firstMod?.id ?? '');
     setActiveTab('all');

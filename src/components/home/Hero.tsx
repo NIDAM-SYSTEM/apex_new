@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Search, ChevronDown } from 'lucide-react';
 import { branches } from '../../data/mockData';
+import type { Branch, Semester, Module } from '../../types';
 
 export default function Hero() {
   const [query,    setQuery]    = useState('');
@@ -8,9 +9,9 @@ export default function Hero() {
   const [semester, setSemester] = useState('');
   const [module,   setModule]   = useState('');
 
-  const selectedBranch   = branches.find(b => b.id === branch);
+  const selectedBranch   = branches.find((b: Branch) => b.id === branch);
   const semesters        = selectedBranch?.semesters ?? [];
-  const selectedSemester = semesters.find(s => s.id === semester);
+  const selectedSemester = semesters.find((s: Semester) => s.id === semester);
   const modules          = selectedSemester?.modules ?? [];
 
   const handleBranchChange = (v: string) => { setBranch(v); setSemester(''); setModule(''); };
@@ -77,7 +78,7 @@ export default function Hero() {
                 aria-label="Filière"
               >
                 <option value="" disabled>Filière</option>
-                {branches.map(b => (
+                {branches.map((b: Branch) => (
                   <option key={b.id} value={b.id}>{b.label}</option>
                 ))}
               </select>
@@ -94,7 +95,7 @@ export default function Hero() {
                 aria-label="Semestre"
               >
                 <option value="" disabled>Semestre</option>
-                {semesters.map(s => (
+                {semesters.map((s: Semester) => (
                   <option key={s.id} value={s.id}>{s.label}</option>
                 ))}
               </select>
@@ -111,7 +112,7 @@ export default function Hero() {
                 aria-label="Module"
               >
                 <option value="" disabled>Module</option>
-                {modules.map(m => (
+                {modules.map((m: Module) => (
                   <option key={m.id} value={m.id}>{m.label}</option>
                 ))}
               </select>

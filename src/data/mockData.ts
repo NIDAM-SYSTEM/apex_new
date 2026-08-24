@@ -1,4 +1,4 @@
-import type { Resource, ClubEvent, Guide, Branch } from './types';
+import type { Resource, ClubEvent, Guide, Branch } from '../types';
 
 // ─── Academic Branches ────────────────────────────────────────────────────────
 export const branches: Branch[] = [
