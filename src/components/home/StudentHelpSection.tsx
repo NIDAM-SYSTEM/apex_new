@@ -1,246 +1,244 @@
-import { Search, CheckCircle2, MapPin, FileText, Clock, ArrowRight, HelpCircle, Flame, ShieldCheck, Download } from 'lucide-react';
+import { 
+  Search, CheckCircle2, MapPin, FileText, Clock, ArrowRight, 
+  HelpCircle, ShieldCheck, Download, FolderOpen, BookOpen, GraduationCap, Lightbulb 
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function StudentHelpSection() {
   return (
     <section
       id="help-desk"
-      className="bg-white py-20 border-t border-slate-100 relative overflow-hidden"
+      className="bg-white py-24 border-t border-slate-100 relative overflow-hidden"
       aria-labelledby="help-showcase-heading"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      {/* Subtle background decoration */}
+      <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-3xl opacity-50 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
           {/* ══════════════════════════════════════════════════════
-              LEFT COLUMN — The Dynamic System Preview (Mini-App)
-              (Order 2 on mobile, Order 1 on desktop)
+              LEFT COLUMN — The Pitch (The "Hub" Concept)
+              Composition: 5 columns on desktop (approx 45%)
           ══════════════════════════════════════════════════════ */}
-          <div className="order-2 lg:order-1 relative pb-6 lg:pb-0">
-            {/* Outer card container */}
+          <div className="lg:col-span-5 order-1 flex flex-col">
+            
+            {/* Eyebrow / Badge */}
+            <div className="inline-flex self-start items-center gap-2 bg-blue-50/80 border border-blue-100/80 text-apex-blue font-body text-[11px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+              <Lightbulb className="w-3.5 h-3.5" strokeWidth={2.5} aria-hidden="true" />
+              Le Hub Central
+            </div>
+
+            {/* Main Headline */}
+            <h2
+              id="help-showcase-heading"
+              className="font-heading font-bold text-slate-900 text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.15] tracking-tight mb-5"
+            >
+              Toutes les procédures. <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-apex-blue to-blue-500">Un seul endroit.</span>
+            </h2>
+
+            {/* Subtext (The Purpose) */}
+            <p className="font-body text-slate-600 text-[16px] leading-relaxed mb-8">
+              L'Aide Étudiante est votre point d'entrée unique. Vous rencontrez un problème ? Ne perdez plus de temps. Nous avons la procédure officielle, les documents exacts et le bureau précis où vous rendre.
+            </p>
+
+            {/* The Scope (3 Pillars showing it's a Hub) */}
+            <div className="space-y-5 mb-10">
+              <div className="flex items-start gap-4 group">
+                <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-600 group-hover:bg-blue-50 group-hover:text-apex-blue group-hover:border-blue-200 transition-colors flex-shrink-0">
+                  <CheckCircle2 className="w-5 h-5" strokeWidth={2} />
+                </div>
+                <div>
+                  <p className="font-body font-bold text-slate-900 text-[15px]">Procédures pas-à-pas</p>
+                  <p className="font-body text-[13px] text-slate-500 mt-1">Des check-lists claires pour résoudre chaque démarche sans faire d'allers-retours.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 group">
+                <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-600 group-hover:bg-blue-50 group-hover:text-apex-blue group-hover:border-blue-200 transition-colors flex-shrink-0">
+                  <FileText className="w-5 h-5" strokeWidth={2} />
+                </div>
+                <div>
+                  <p className="font-body font-bold text-slate-900 text-[15px]">Documents & Formulaires</p>
+                  <p className="font-body text-[13px] text-slate-500 mt-1">Tous les modèles officiels prêts à être téléchargés et imprimés.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 group">
+                <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-600 group-hover:bg-blue-50 group-hover:text-apex-blue group-hover:border-blue-200 transition-colors flex-shrink-0">
+                  <MapPin className="w-5 h-5" strokeWidth={2} />
+                </div>
+                <div>
+                  <p className="font-body font-bold text-slate-900 text-[15px]">Cartographie des Bureaux</p>
+                  <p className="font-body text-[13px] text-slate-500 mt-1">Trouvez instantanément l'emplacement et les horaires de chaque service.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Main CTA */}
+            <div>
+              <Link
+                to="/help"
+                className="group inline-flex items-center gap-2.5 bg-apex-blue text-white
+                           font-body font-bold text-[15px] px-8 py-4 rounded-xl
+                           hover:bg-[#1d4ed8] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgb(37,99,235,0.25)] 
+                           transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:ring-apex-blue"
+              >
+                Explorer le Hub d'Aide
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" strokeWidth={2.5} />
+              </Link>
+            </div>
+          </div>
+
+          {/* ══════════════════════════════════════════════════════
+              RIGHT COLUMN — The Proof (Visualizing the Resolution)
+              Composition: 7 columns on desktop (approx 55%)
+          ══════════════════════════════════════════════════════ */}
+          <div className="lg:col-span-7 order-2 relative">
+            
             <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 relative shadow-sm">
               
-              {/* Header of Mock UI */}
-              <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-200/60">
+              {/* Browser/App Header */}
+              <div className="flex items-center justify-between mb-5 pb-4 border-b border-slate-200/60">
                 <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-                  <span className="font-body text-[11px] font-medium text-slate-400 ml-2">
-                    APEX · Moteur de Résolution Rapide
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-400" />
+                    <div className="w-3 h-3 rounded-full bg-amber-400" />
+                    <div className="w-3 h-3 rounded-full bg-emerald-400" />
+                  </div>
+                  <span className="font-body text-[12px] font-medium text-slate-400 ml-3">
+                    hub.apex.ens / resolution
                   </span>
                 </div>
-                <span className="inline-flex items-center gap-1 font-body text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-100">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  En direct
+              </div>
+
+              {/* Hub Categories (Shows Breadth) */}
+              <div className="flex flex-wrap gap-2 mb-5">
+                <span className="inline-flex items-center gap-1.5 bg-white border border-slate-200 px-3 py-1.5 rounded-lg font-body text-[11px] font-semibold text-slate-600 shadow-sm">
+                  <BookOpen className="w-3.5 h-3.5 text-apex-blue" /> Examens
+                </span>
+                <span className="inline-flex items-center gap-1.5 bg-white border border-slate-200 px-3 py-1.5 rounded-lg font-body text-[11px] font-semibold text-slate-600 shadow-sm">
+                  <FolderOpen className="w-3.5 h-3.5 text-amber-500" /> Scolarité
+                </span>
+                <span className="inline-flex items-center gap-1.5 bg-white border border-slate-200 px-3 py-1.5 rounded-lg font-body text-[11px] font-semibold text-slate-600 shadow-sm">
+                  <GraduationCap className="w-3.5 h-3.5 text-emerald-500" /> Stages
                 </span>
               </div>
 
               {/* The Search Bar Mockup */}
-              <div className="bg-white rounded-xl p-3.5 sm:p-4 shadow-sm border border-slate-200/90 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center text-apex-blue flex-shrink-0">
-                  <Search className="w-4 h-4" strokeWidth={2.2} aria-hidden="true" />
-                </div>
+              <div className="bg-white rounded-xl p-4 shadow-[0_4px_12px_rgb(0,0,0,0.03)] border border-slate-200 flex items-center gap-3 relative z-10">
+                <Search className="w-5 h-5 text-apex-blue" strokeWidth={2.5} />
                 <div className="flex-1 min-w-0 flex items-center">
-                  <span className="font-body text-[13px] sm:text-[14px] text-slate-900 font-medium truncate">
+                  <span className="font-body text-[14px] text-slate-900 font-medium truncate">
                     Comment corriger une note d'examen ?
                   </span>
-                  <span className="inline-block w-0.5 h-4 bg-apex-blue ml-1 animate-pulse" aria-hidden="true" />
+                  <span className="inline-block w-0.5 h-4 bg-apex-blue ml-1 animate-pulse" />
                 </div>
-                <span className="hidden sm:inline-flex font-body text-[10px] font-semibold uppercase tracking-wider text-slate-400 bg-slate-100 px-2 py-1 rounded">
-                  Entrée ↵
-                </span>
               </div>
 
-              {/* The Instant Answer Block */}
-              <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 mt-4 shadow-sm">
+              {/* The Instant Answer Block (The Procedure Proof) */}
+              <div className="bg-white p-6 rounded-2xl border border-blue-100 mt-4 shadow-lg shadow-blue-50/50 relative">
                 
                 {/* Result header */}
-                <div className="flex items-center justify-between gap-2 mb-3">
+                <div className="flex items-center justify-between gap-2 mb-4">
                   <div className="flex items-center gap-2">
                     <span className="font-body text-[10px] font-bold uppercase tracking-wider text-apex-blue bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-full">
                       Guide Officiel
                     </span>
-                    <span className="font-body text-[11px] text-slate-400">
-                      Mis à jour pour 2026
-                    </span>
                   </div>
-                  <span className="flex items-center gap-1 font-body text-[11px] text-emerald-600 font-medium">
+                  <span className="flex items-center gap-1 font-body text-[11px] text-emerald-600 font-medium bg-emerald-50 px-2 py-1 rounded-md">
                     <ShieldCheck className="w-3.5 h-3.5" strokeWidth={2} />
                     Procédure Validée
                   </span>
                 </div>
 
-                <h3 className="font-heading font-bold text-apex-dark text-[16px] leading-snug mb-3">
-                  Procédure de correction de note
+                <h3 className="font-heading font-bold text-slate-900 text-[18px] leading-snug mb-4">
+                  Demande de correction de note
                 </h3>
 
-                {/* Checklist (3 steps) */}
-                <div className="space-y-2.5 my-4">
-                  <div className="flex items-start gap-3 p-2 rounded-lg bg-slate-50/80 border border-slate-100">
-                    <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-apex-blue" strokeWidth={2.5} />
+                {/* Checklist (The Procedure) */}
+                <div className="space-y-3 my-5">
+                  {/* Step 1 */}
+                  <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-50/80 border border-slate-100 hover:border-blue-200 transition-colors">
+                    <div className="w-6 h-6 rounded-full bg-blue-100 text-apex-blue font-bold text-[12px] flex items-center justify-center flex-shrink-0 mt-0.5">
+                      1
                     </div>
-                    <div className="text-left flex-1 min-w-0">
-                      <p className="font-body text-[12.5px] font-semibold text-slate-800">
-                        1. Récupérer le formulaire de réclamation
+                    <div className="text-left flex-1">
+                      <p className="font-body text-[13px] font-bold text-slate-800">
+                        Télécharger le formulaire de réclamation
                       </p>
-                      <p className="font-body text-[11px] text-slate-500">
-                        Disponible au Bureau 104 ou en téléchargement PDF direct
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 p-2 rounded-lg bg-slate-50/80 border border-slate-100">
-                    <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-apex-blue" strokeWidth={2.5} />
-                    </div>
-                    <div className="text-left flex-1 min-w-0">
-                      <p className="font-body text-[12.5px] font-semibold text-slate-800">
-                        2. Faire signer par le professeur responsable
-                      </p>
-                      <p className="font-body text-[11px] text-slate-500">
-                        Délai limite : 72h après publication des résultats
+                      <p className="font-body text-[12px] text-slate-500 mt-0.5">
+                        Format PDF disponible en bas de cette page.
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3 p-2 rounded-lg bg-slate-50/80 border border-slate-100">
-                    <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-apex-blue" strokeWidth={2.5} />
+                  {/* Step 2 */}
+                  <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-50/80 border border-slate-100 hover:border-blue-200 transition-colors">
+                    <div className="w-6 h-6 rounded-full bg-blue-100 text-apex-blue font-bold text-[12px] flex items-center justify-center flex-shrink-0 mt-0.5">
+                      2
                     </div>
-                    <div className="text-left flex-1 min-w-0">
-                      <p className="font-body text-[12.5px] font-semibold text-slate-800">
-                        3. Déposer le dossier au Secrétariat Général
+                    <div className="text-left flex-1">
+                      <p className="font-body text-[13px] font-bold text-slate-800">
+                        Faire signer par le professeur
                       </p>
-                      <p className="font-body text-[11px] text-slate-500">
-                        Bâtiment Principal · Rez-de-chaussée, Bureau 04
+                      <p className="font-body text-[12px] text-slate-500 mt-0.5">
+                        Délai limite : 72h après publication des résultats.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-50/80 border border-slate-100 hover:border-blue-200 transition-colors">
+                    <div className="w-6 h-6 rounded-full bg-blue-100 text-apex-blue font-bold text-[12px] flex items-center justify-center flex-shrink-0 mt-0.5">
+                      3
+                    </div>
+                    <div className="text-left flex-1">
+                      <p className="font-body text-[13px] font-bold text-slate-800">
+                        Déposer au Secrétariat Général
+                      </p>
+                      <p className="font-body text-[12px] text-slate-500 mt-0.5">
+                        Bâtiment Principal · Rez-de-chaussée, Bureau 04.
                       </p>
                     </div>
                   </div>
                 </div>
 
                 {/* Sub-card quick info footer */}
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-slate-500 font-body text-[11.5px]">
-                  <span className="flex items-center gap-1">
+                <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-slate-500 font-body text-[12px]">
+                  <span className="flex items-center gap-1.5 bg-slate-50 px-2 py-1 rounded-md">
                     <Clock className="w-3.5 h-3.5 text-slate-400" />
-                    Temps estimé : <strong>2 jours ouvrés</strong>
+                    Temps estimé : <strong className="text-slate-700">2 jours</strong>
                   </span>
-                  <span className="text-apex-blue font-semibold flex items-center gap-1 hover:underline cursor-pointer">
+                  <button className="text-white bg-apex-blue font-semibold flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors shadow-sm">
                     <Download className="w-3.5 h-3.5" />
-                    Formulaire .PDF
-                  </span>
+                    Formulaire.pdf
+                  </button>
                 </div>
               </div>
             </div>
 
-            {/* Floating Element (The Hook) */}
+            {/* Floating Trust Indicator Element */}
             <div
-              className="absolute -bottom-3 left-4 sm:-left-2 z-10
-                         bg-white border-2 border-amber-400 rounded-2xl shadow-lg
-                         px-4 py-2.5 flex items-center gap-2.5 animate-bounce-subtle"
-              role="status"
+              className="absolute -bottom-4 -left-4 sm:-left-8 z-20
+                         bg-white border border-slate-200 rounded-2xl shadow-xl shadow-slate-200/50
+                         p-4 flex items-center gap-4 animate-bounce-subtle"
             >
-              <div className="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center text-amber-500 flex-shrink-0">
-                <Flame className="w-4 h-4 fill-amber-400 text-amber-500" />
+              <div className="w-10 h-10 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-500 flex-shrink-0">
+                <HelpCircle className="w-5 h-5" />
               </div>
-              <span className="font-heading font-bold text-[12.5px] text-slate-900 tracking-tight whitespace-nowrap">
-                20+ Guides Administratifs Disponibles
-              </span>
+              <div>
+                <p className="font-heading font-bold text-[15px] text-slate-900 leading-none">
+                  50+ Procédures
+                </p>
+                <p className="font-body text-[12px] text-slate-500 mt-1">
+                  Documentées et validées
+                </p>
+              </div>
             </div>
+            
           </div>
-
-          {/* ══════════════════════════════════════════════════════
-              RIGHT COLUMN — The Pitch (Selling the Support)
-              (Order 1 on mobile, Order 2 on desktop)
-          ══════════════════════════════════════════════════════ */}
-          <div className="order-1 lg:order-2 flex flex-col">
-
-            {/* Gold Pill Badge */}
-            <div className="inline-flex self-start items-center gap-1.5 bg-amber-50 border border-amber-200/80 text-amber-700 font-body text-[10px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full mb-6">
-              <HelpCircle className="w-3.5 h-3.5 text-amber-600" strokeWidth={2.2} aria-hidden="true" />
-              Centre d'Aide
-            </div>
-
-            {/* Main Headline */}
-            <h2
-              id="help-showcase-heading"
-              className="font-heading font-bold text-slate-900 text-3xl sm:text-4xl leading-[1.15] tracking-tight mb-4"
-            >
-              Ne soyez plus jamais perdu sur le campus.
-            </h2>
-
-            {/* Subtext */}
-            <p className="font-body text-slate-600 text-[15px] leading-relaxed mb-8">
-              Fini le stress administratif. APEX a documenté toutes les procédures, localisé tous les bureaux
-              et simplifié les règles de l'ENS Tétouan dans des guides simples, étape par étape.
-            </p>
-
-            {/* Trust / Scale Indicators */}
-            <div className="space-y-4 mb-8">
-              <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-apex-blue flex-shrink-0 mt-0.5">
-                  <MapPin className="w-4 h-4" strokeWidth={2.2} aria-hidden="true" />
-                </div>
-                <div>
-                  <p className="font-body font-semibold text-slate-900 text-[14px] leading-snug">
-                    Cartographie de tous les bureaux
-                  </p>
-                  <p className="font-body text-[12.5px] text-slate-500 mt-0.5">
-                    Trouvez instantanément l'emplacement exact et les horaires des services administratifs.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-apex-blue flex-shrink-0 mt-0.5">
-                  <FileText className="w-4 h-4" strokeWidth={2.2} aria-hidden="true" />
-                </div>
-                <div>
-                  <p className="font-body font-semibold text-slate-900 text-[14px] leading-snug">
-                    Formulaires téléchargeables
-                  </p>
-                  <p className="font-body text-[12.5px] text-slate-500 mt-0.5">
-                    Tous les modèles officiels pré-remplis pour attestations, réclamations et inscriptions.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-apex-blue flex-shrink-0 mt-0.5">
-                  <Clock className="w-4 h-4" strokeWidth={2.2} aria-hidden="true" />
-                </div>
-                <div>
-                  <p className="font-body font-semibold text-slate-900 text-[14px] leading-snug">
-                    Résolution de problèmes en 3 étapes
-                  </p>
-                  <p className="font-body text-[12.5px] text-slate-500 mt-0.5">
-                    Des check-lists ultra claires pour résoudre chaque démarche sans faire d'allers-retours inutiles.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Main CTA */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <Link
-                to="/help"
-                className="group inline-flex items-center gap-2.5 bg-apex-blue text-white
-                           font-body font-bold text-[15px] px-8 py-4 rounded-xl
-                           hover:bg-[#1d4ed8] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200
-                           focus:outline-none focus:ring-2 focus:ring-apex-blue focus:ring-offset-2 shadow-md"
-                aria-label="Accéder au Centre d'Aide"
-              >
-                Accéder au Centre d'Aide
-                <ArrowRight
-                  className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200"
-                  strokeWidth={2.5}
-                  aria-hidden="true"
-                />
-              </Link>
-            </div>
-
-          </div>
-
         </div>
       </div>
     </section>

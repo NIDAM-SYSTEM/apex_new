@@ -1,7 +1,6 @@
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import BentoHero from '../components/home/BentoHero';
-import BranchAccess from '../components/home/BranchAccess';
 import PopularResources from '../components/home/PopularResources';
 import StudentHelpSection from '../components/home/StudentHelpSection';
 import ClubSection from '../components/home/ClubSection';
@@ -39,10 +38,7 @@ export default function HomePage() {
         {/* 1. Bento Box hero grid */}
         <BentoHero />
 
-        {/* 2. Quick branch access strip */}
-        <BranchAccess />
-
-        {/* 3. Popular resources — software list view */}
+        {/* 2. Popular resources — software list view */}
         <PopularResources />
 
         {/* 4. Student Help Desk — 3-col cards */}
