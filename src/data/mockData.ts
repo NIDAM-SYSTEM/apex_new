@@ -5,61 +5,101 @@ export const branches: Branch[] = [
   {
     id: 'maths',
     label: 'Mathématiques',
+    status: 'available',
     semesters: [
       {
-        id: 's1', label: 'S1',
+        id: 's1',
+        label: 'Semestre 01',
         modules: [
-          { id: 'analysis1', label: 'Analyse 1' },
-          { id: 'algebra1', label: 'Algèbre 1' },
-          { id: 'logic', label: 'Logique' },
+          { id: 's1-algebre1', label: 'Algèbre 1' },
+          { id: 's1-algebre2', label: 'Algèbre 2' },
+          { id: 's1-analyse1', label: 'Analyse 1' },
+          { id: 's1-info1', label: 'Informatique 1 (Python)' },
+          { id: 's1-statistiques', label: 'Statistiques & Probabilités' },
+          { id: 's1-thermo', label: 'Thermodynamique' },
         ],
       },
       {
-        id: 's2', label: 'S2',
+        id: 's2',
+        label: 'Semestre 02',
         modules: [
-          { id: 'analysis2', label: 'Analyse 2' },
-          { id: 'algebra2', label: 'Algèbre 2' },
-          { id: 'stats', label: 'Statistiques' },
+          { id: 's2-algebre3', label: 'Algèbre 3' },
+          { id: 's2-analyse2', label: 'Analyse 2' },
+          { id: 's2-analyse3', label: 'Analyse 3' },
+          { id: 's2-electro', label: 'Électromagnétisme' },
+          { id: 's2-info2', label: 'Informatique 2 (Algorithmique)' },
+          { id: 's2-optique', label: 'Optique' },
         ],
       },
       {
-        id: 's3', label: 'S3',
+        id: 's3',
+        label: 'Semestre 03',
         modules: [
-          { id: 'analysis3', label: 'Analyse 3' },
-          { id: 'topology', label: 'Topologie' },
-          { id: 'calculus', label: 'Calcul Différentiel' },
+          { id: 's3-algebre4', label: 'Algèbre 4' },
+          { id: 's3-analyse4', label: 'Analyse 4' },
+          { id: 's3-analyse5', label: 'Analyse 5' },
+          { id: 's3-info3', label: 'Informatique 3' },
+          { id: 's3-mecanique', label: 'Mécanique' },
+          { id: 's3-sc', label: 'Systèmes & Circuits' },
         ],
       },
       {
-        id: 's4', label: 'S4',
+        id: 's4',
+        label: 'Semestre 04',
         modules: [
-          { id: 'complex-analysis', label: 'Analyse Complexe' },
-          { id: 'probability', label: 'Probabilités' },
-          { id: 'num-methods', label: 'Méthodes Numériques' },
+          { id: 's4-algebre5', label: 'Algèbre 5' },
+          { id: 's4-analyse6', label: 'Analyse 6' },
+          { id: 's4-dida', label: 'Didactique des Mathématiques' },
+          { id: 's4-info4', label: 'Informatique 4 (Bases de Données)' },
+          { id: 's4-numerique', label: 'Analyse Numérique' },
+          { id: 's4-proba', label: 'Probabilités' },
+        ],
+      },
+      {
+        id: 's5',
+        label: 'Semestre 05',
+        modules: [
+          { id: 's5-algebrique', label: 'Structures Algébriques' },
+          { id: 's5-didactique', label: 'Didactique Spécialisée' },
+          { id: 's5-diontologie', label: 'Déontologie & Éthique' },
+          { id: 's5-mesure', label: 'Mesure & Intégration' },
+          { id: 's5-topologie', label: 'Topologie Générale' },
+        ],
+      },
+      {
+        id: 's6',
+        label: 'Semestre 06',
+        modules: [
+          { id: 's6-complexe', label: 'Analyse Complexe' },
+          { id: 's6-diff', label: 'Calcul Différentiel & EDO' },
+          { id: 's6-epi', label: 'Épistémologie & Histoire des Maths' },
+          { id: 's6-geo', label: 'Géométrie Différentielle' },
+          { id: 's6-methodes', label: 'Méthodes de Recherche' },
         ],
       },
     ],
   },
   {
     id: 'physics',
-    label: 'Physique',
+    label: 'Physique-Chimie',
+    status: 'coming-soon',
     semesters: [
       {
-        id: 's1', label: 'S1',
+        id: 's1', label: 'Semestre 01',
         modules: [
           { id: 'mechanics', label: 'Mécanique Classique' },
           { id: 'thermodynamics', label: 'Thermodynamique' },
         ],
       },
       {
-        id: 's2', label: 'S2',
+        id: 's2', label: 'Semestre 02',
         modules: [
           { id: 'electromagnetism', label: 'Électromagnétisme' },
           { id: 'waves', label: 'Ondes' },
         ],
       },
       {
-        id: 's3', label: 'S3',
+        id: 's3', label: 'Semestre 03',
         modules: [
           { id: 'quantum', label: 'Mécanique Quantique' },
           { id: 'optics', label: 'Optique' },
@@ -68,18 +108,47 @@ export const branches: Branch[] = [
     ],
   },
   {
-    id: 'sport',
-    label: 'Sport',
+    id: 'info',
+    label: 'Informatique',
+    status: 'coming-soon',
     semesters: [
       {
-        id: 's1', label: 'S1',
+        id: 's1', label: 'Semestre 01',
+        modules: [
+          { id: 'algo-base', label: 'Algorithmique de Base' },
+          { id: 'web-dev', label: 'Développement Web' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'svt',
+    label: 'Sciences de la Vie & Terre',
+    status: 'coming-soon',
+    semesters: [
+      {
+        id: 's1', label: 'Semestre 01',
+        modules: [
+          { id: 'biologie-cell', label: 'Biologie Cellulaire' },
+          { id: 'geologie', label: 'Géologie Générale' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'sport',
+    label: 'Sport',
+    status: 'coming-soon',
+    semesters: [
+      {
+        id: 's1', label: 'Semestre 01',
         modules: [
           { id: 'anatomy', label: 'Anatomie' },
           { id: 'physiology', label: 'Physiologie' },
         ],
       },
       {
-        id: 's2', label: 'S2',
+        id: 's2', label: 'Semestre 02',
         modules: [
           { id: 'sport-psychology', label: 'Psychologie du Sport' },
           { id: 'training-methods', label: 'Méthodes d\'Entraînement' },
@@ -88,58 +157,19 @@ export const branches: Branch[] = [
     ],
   },
   {
-    id: 'history',
-    label: 'Histoire',
-    semesters: [
-      {
-        id: 's1', label: 'S1',
-        modules: [
-          { id: 'ancient-history', label: 'Histoire Ancienne' },
-          { id: 'medieval-history', label: 'Histoire Médiévale' },
-        ],
-      },
-      {
-        id: 's2', label: 'S2',
-        modules: [
-          { id: 'modern-history', label: 'Histoire Moderne' },
-          { id: 'contemporary-history', label: 'Histoire Contemporaine' },
-        ],
-      },
-    ],
-  },
-  {
-    id: 'geography',
-    label: 'Géographie',
-    semesters: [
-      {
-        id: 's1', label: 'S1',
-        modules: [
-          { id: 'physical-geo', label: 'Géographie Physique' },
-          { id: 'human-geo', label: 'Géographie Humaine' },
-        ],
-      },
-      {
-        id: 's2', label: 'S2',
-        modules: [
-          { id: 'regional-geo', label: 'Géographie Régionale' },
-          { id: 'cartography', label: 'Cartographie' },
-        ],
-      },
-    ],
-  },
-  {
     id: 'arabic',
     label: 'Langue Arabe',
+    status: 'coming-soon',
     semesters: [
       {
-        id: 's1', label: 'S1',
+        id: 's1', label: 'Semestre 01',
         modules: [
           { id: 'arabic-literature', label: 'Littérature Arabe' },
           { id: 'arabic-linguistics', label: 'Linguistique Arabe' },
         ],
       },
       {
-        id: 's2', label: 'S2',
+        id: 's2', label: 'Semestre 02',
         modules: [
           { id: 'arabic-rhetoric', label: 'Rhétorique Arabe' },
           { id: 'arabic-grammar', label: 'Grammaire Avancée' },

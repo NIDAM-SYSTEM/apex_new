@@ -46,6 +46,7 @@ export interface Branch {
   id: string;
   label: string;
   semesters: Semester[];
+  status?: 'available' | 'coming-soon';
 }
 
 export interface Semester {

@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { ArrowRight, Clock, User, BookOpen, ExternalLink } from 'lucide-react';
+import { ArrowRight, Clock, User, BookOpen, ExternalLink, Sparkles, TrendingUp, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
-
+// (Data remains the same as provided)
 type Category = 'Tous' | 'Méthodologie' | 'Vie Campus' | 'Tech & Code' | 'Événements';
 
 const CATEGORIES: Category[] = ['Tous', 'Méthodologie', 'Vie Campus', 'Tech & Code', 'Événements'];
@@ -19,15 +19,15 @@ interface Article {
   author: string;
   date: string;
   readTime: string;
-  patternStyle: string; // CSS gradient / pattern class combo
+  patternStyle: string; 
 }
 
 const featuredArticle = {
   id: 'featured',
-  tag: 'À la Une',
+  tag: 'Édition Spéciale',
   title: 'Guide Stratégique : Comment exceller en Analyse 3 et Algèbre',
   excerpt:
-    'Maîtriser les deux piliers du semestre 3. Techniques éprouvées, erreurs classiques à éviter, et méthode de révision active pour maximiser vos notes.',
+    'Maîtriser les deux piliers du semestre 3. Techniques éprouvées, erreurs classiques à éviter, et méthode de révision active pour maximiser vos notes dès la première semaine.',
   author: 'Nidal H.',
   readTime: '5 min de lecture',
   date: '20 Août 2026',
@@ -43,7 +43,7 @@ const articles: Article[] = [
     author: 'Salma B.',
     date: '12 Sept 2026',
     readTime: '4 min',
-    patternStyle: 'from-blue-800 via-blue-700 to-indigo-700',
+    patternStyle: 'from-blue-600 to-indigo-900',
   },
   {
     id: 'a2',
@@ -54,7 +54,7 @@ const articles: Article[] = [
     author: 'Amine K.',
     date: '10 Sept 2026',
     readTime: '6 min',
-    patternStyle: 'from-amber-600 via-orange-500 to-amber-700',
+    patternStyle: 'from-amber-500 to-orange-700',
   },
   {
     id: 'a3',
@@ -65,7 +65,7 @@ const articles: Article[] = [
     author: 'Omar Z.',
     date: '8 Sept 2026',
     readTime: '8 min',
-    patternStyle: 'from-emerald-700 via-teal-600 to-emerald-800',
+    patternStyle: 'from-emerald-500 to-teal-800',
   },
   {
     id: 'a4',
@@ -76,7 +76,7 @@ const articles: Article[] = [
     author: 'Hiba C.',
     date: '5 Sept 2026',
     readTime: '5 min',
-    patternStyle: 'from-violet-700 via-purple-600 to-violet-800',
+    patternStyle: 'from-violet-500 to-purple-900',
   },
   {
     id: 'a5',
@@ -87,7 +87,7 @@ const articles: Article[] = [
     author: 'Fatima E.',
     date: '3 Sept 2026',
     readTime: '4 min',
-    patternStyle: 'from-rose-600 via-pink-500 to-rose-700',
+    patternStyle: 'from-rose-500 to-pink-800',
   },
   {
     id: 'a6',
@@ -98,79 +98,68 @@ const articles: Article[] = [
     author: 'Rachid A.',
     date: '1 Sept 2026',
     readTime: '7 min',
-    patternStyle: 'from-sky-700 via-blue-600 to-sky-800',
+    patternStyle: 'from-sky-500 to-blue-800',
   },
 ];
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
-
 function categoryColor(cat: string): string {
   switch (cat) {
-    case 'Méthodologie': return 'text-apex-blue';
-    case 'Événements':   return 'text-amber-600';
-    case 'Tech & Code':  return 'text-emerald-600';
-    case 'Vie Campus':   return 'text-rose-600';
-    default:             return 'text-slate-500';
+    case 'Méthodologie': return 'text-blue-600 bg-blue-50 border-blue-100';
+    case 'Événements':   return 'text-amber-600 bg-amber-50 border-amber-100';
+    case 'Tech & Code':  return 'text-emerald-600 bg-emerald-50 border-emerald-100';
+    case 'Vie Campus':   return 'text-rose-600 bg-rose-50 border-rose-100';
+    default:             return 'text-slate-600 bg-slate-50 border-slate-200';
   }
-}
-
-// ─── Article Card Pattern Header ─────────────────────────────────────────────
-function CardPattern({ gradient }: { gradient: string }) {
-  return (
-    <div className={`h-40 w-full bg-gradient-to-br ${gradient} relative overflow-hidden flex-shrink-0 rounded-t-xl`} aria-hidden="true">
-      {/* Geometric overlay pattern */}
-      <div className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage: 'repeating-linear-gradient(45deg, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 20px)',
-        }}
-      />
-      {/* Dot accent */}
-      <div className="absolute top-4 right-4 w-16 h-16 rounded-full bg-white/10 border border-white/20" />
-      <div className="absolute -bottom-4 -left-4 w-24 h-24 rounded-full bg-white/5 border border-white/10" />
-      <BookOpen className="absolute bottom-4 right-5 w-8 h-8 text-white/30" strokeWidth={1.5} />
-    </div>
-  );
 }
 
 // ─── Article Card ─────────────────────────────────────────────────────────────
 function ArticleCard({ article }: { article: Article }) {
   return (
-    <article className="group bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden hover:-translate-y-1 hover:shadow-md transition-all duration-200 flex flex-col">
-      <CardPattern gradient={article.patternStyle} />
+    <article className="group bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col overflow-hidden">
+      
+      {/* Card Header (Magazine Cover Style) */}
+      <div className={`h-48 w-full bg-gradient-to-br ${article.patternStyle} relative overflow-hidden flex-shrink-0`}>
+        {/* Animated Background Pattern */}
+        <div className="absolute inset-0 opacity-20 mix-blend-overlay group-hover:scale-110 transition-transform duration-700 ease-out"
+          style={{
+            backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+          }}
+        />
+        
+        {/* Floating Category Badge inside the cover */}
+        <div className="absolute top-4 left-4 z-10">
+          <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/90 backdrop-blur-md font-body text-[10px] font-black uppercase tracking-widest text-slate-900 shadow-sm">
+            {article.category}
+          </span>
+        </div>
 
-      <div className="p-6 flex flex-col flex-1">
-        {/* Category tag */}
-        <p className={`font-body text-[10px] font-bold uppercase tracking-widest mb-2 ${categoryColor(article.category)}`}>
-          {article.category}
-        </p>
+        {/* Abstract Graphic Elements */}
+        <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500" />
+        <BookOpen className="absolute bottom-4 right-4 w-12 h-12 text-white/20 group-hover:text-white/40 transition-colors duration-500 transform group-hover:-rotate-12" strokeWidth={1} />
+      </div>
 
-        {/* Title */}
-        <h2 className="font-heading font-bold text-apex-dark text-[15px] leading-snug mb-2 line-clamp-2 group-hover:text-apex-blue transition-colors duration-150">
+      {/* Card Content */}
+      <div className="p-6 flex flex-col flex-1 bg-white relative">
+        <h2 className="font-heading font-black text-slate-900 text-[17px] leading-snug mb-3 line-clamp-2 group-hover:text-apex-blue transition-colors duration-200">
           {article.title}
         </h2>
 
-        {/* Excerpt */}
-        <p className="font-body text-[13px] text-slate-500 leading-relaxed line-clamp-2 flex-1">
+        <p className="font-body text-[14px] text-slate-500 leading-relaxed line-clamp-2 flex-1 mb-5">
           {article.excerpt}
         </p>
 
         {/* Card footer */}
-        <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-100">
-          <div className="flex items-center gap-3">
-            <span className="font-body text-[11px] text-slate-400">{article.date}</span>
-            <span className="text-slate-200" aria-hidden="true">·</span>
-            <span className="font-body text-[11px] text-slate-400 flex items-center gap-1">
-              <Clock className="w-3 h-3" strokeWidth={2} aria-hidden="true" />
-              {article.readTime}
-            </span>
+        <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center">
+              <User className="w-3 h-3 text-slate-500" />
+            </div>
+            <span className="font-body text-[12px] font-semibold text-slate-700">{article.author}</span>
           </div>
-          <a
-            href={`/articles/${article.slug}`}
-            className="font-body text-[12px] font-semibold text-apex-blue hover:underline flex items-center gap-1 group-hover:gap-1.5 transition-all duration-150"
-            aria-label={`Lire l'article : ${article.title}`}
-          >
-            Lire <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.5} aria-hidden="true" />
-          </a>
+          <span className="flex items-center gap-1.5 font-body text-[11px] font-medium text-slate-400 bg-slate-50 px-2.5 py-1 rounded-md border border-slate-100">
+            <Clock className="w-3 h-3" /> {article.readTime}
+          </span>
         </div>
       </div>
     </article>
@@ -185,7 +174,6 @@ export default function ArticlesPage() {
     ? articles
     : articles.filter(a => a.category === activeCategory);
 
-  // Split for funnel placement: first 3 above banner, rest below
   const above = filtered.slice(0, 3);
   const below  = filtered.slice(3);
 
@@ -193,97 +181,93 @@ export default function ArticlesPage() {
     <>
       <Header activePage="articles" />
 
-      <main className="bg-slate-50 min-h-screen" id="main-content">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-
-          {/* ══════════════════════════════════════════════════════════════
-              SECTION 1 — Featured Article Hero
-          ══════════════════════════════════════════════════════════════ */}
-          <section aria-labelledby="featured-heading" className="mt-8">
-            <div className="bg-[#0f2560] rounded-2xl p-8 md:p-12 relative overflow-hidden">
-              {/* Background grid texture */}
-              <div
-                className="absolute inset-0 opacity-[0.05]"
-                style={{
-                  backgroundImage: 'repeating-linear-gradient(0deg, white 0px, white 1px, transparent 1px, transparent 36px), repeating-linear-gradient(90deg, white 0px, white 1px, transparent 1px, transparent 36px)',
-                }}
-                aria-hidden="true"
-              />
-              {/* Glow */}
-              <div
-                className="absolute -top-20 -right-20 w-64 h-64 rounded-full pointer-events-none"
-                style={{ background: 'radial-gradient(circle, rgba(96,165,250,0.12) 0%, transparent 70%)' }}
-                aria-hidden="true"
-              />
-
-              <div className="relative max-w-3xl">
-                {/* Gold badge */}
-                <div className="inline-flex items-center gap-2 bg-amber-400/15 border border-amber-400/30 text-amber-300 font-body text-[11px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0" />
-                  {featuredArticle.tag}
-                </div>
-
-                {/* Headline */}
-                <h1
-                  id="featured-heading"
-                  className="font-heading font-bold text-white text-2xl sm:text-3xl lg:text-4xl leading-tight mb-4 max-w-2xl"
-                >
-                  {featuredArticle.title}
-                </h1>
-
-                {/* Excerpt */}
-                <p className="font-body text-blue-200 text-[14px] leading-relaxed mb-6 max-w-xl line-clamp-2">
-                  {featuredArticle.excerpt}
-                </p>
-
-                {/* Metadata + CTA */}
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
-                  <div className="flex items-center gap-3 text-blue-300">
-                    <span className="flex items-center gap-1.5 font-body text-[12px]">
-                      <User className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />
-                      Par {featuredArticle.author}
-                    </span>
-                    <span className="text-blue-600" aria-hidden="true">·</span>
-                    <span className="flex items-center gap-1.5 font-body text-[12px]">
-                      <Clock className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />
-                      {featuredArticle.readTime}
-                    </span>
-                    <span className="text-blue-600" aria-hidden="true">·</span>
-                    <span className="font-body text-[12px]">{featuredArticle.date}</span>
+      <main className="bg-[#f8fafc] min-h-screen" id="main-content">
+        
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 1 — Editorial Hero (Premium Vibe)
+        ══════════════════════════════════════════════════════════════ */}
+        <section aria-labelledby="featured-heading" className="pt-8 pb-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="bg-[#0a1128] rounded-[2rem] p-8 md:p-14 relative overflow-hidden shadow-2xl border border-slate-800">
+              
+              {/* Background Glows & Texture */}
+              <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[100px] pointer-events-none mix-blend-screen translate-x-1/3 -translate-y-1/3" />
+              <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[80px] pointer-events-none mix-blend-screen -translate-x-1/4 translate-y-1/4" />
+              
+              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                {/* Content Side */}
+                <div className="lg:col-span-7">
+                  <div className="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/20 text-amber-400 font-body text-[11px] font-black uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    {featuredArticle.tag}
                   </div>
-                  <a
-                    href="#"
-                    className="inline-flex items-center gap-2 bg-white text-[#0f2560] font-body font-bold text-[13px] px-5 py-2.5 rounded-xl hover:bg-blue-50 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-white"
-                    aria-label="Lire l'article à la une"
-                  >
-                    Lire l'article <ArrowRight className="w-4 h-4" strokeWidth={2.5} aria-hidden="true" />
-                  </a>
+
+                  <h1 id="featured-heading" className="font-heading font-black text-white text-3xl sm:text-4xl lg:text-5xl leading-[1.1] mb-6 tracking-tight">
+                    {featuredArticle.title}
+                  </h1>
+
+                  <p className="font-body text-slate-300 text-[16px] sm:text-[18px] leading-relaxed mb-8 max-w-2xl">
+                    {featuredArticle.excerpt}
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                    <Link
+                      to="#"
+                      className="group inline-flex items-center gap-3 bg-white text-[#0a1128] font-body font-bold text-[15px] px-8 py-4 rounded-xl hover:bg-slate-100 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] focus:ring-4 focus:ring-white/30"
+                    >
+                      Lire l'édition spéciale 
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                    
+                    <div className="flex items-center gap-4 text-slate-400 font-body text-[13px] font-medium border-l border-slate-700 pl-6 h-10">
+                      <span className="flex items-center gap-1.5 text-white">
+                        <User className="w-4 h-4 text-slate-500" /> {featuredArticle.author}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Clock className="w-4 h-4 text-slate-500" /> {featuredArticle.readTime}
+                      </span>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Visual Side (Abstract Representation) */}
+                <div className="hidden lg:flex lg:col-span-5 justify-end">
+                  <div className="relative w-72 h-72">
+                    <div className="absolute inset-0 border-2 border-dashed border-slate-700 rounded-full animate-[spin_60s_linear_infinite]" />
+                    <div className="absolute inset-4 border border-blue-500/30 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <TrendingUp className="w-24 h-24 text-amber-400 opacity-80" strokeWidth={1} />
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {/* ══════════════════════════════════════════════════════════════
-              SECTION 2 — Filter Bar
+              SECTION 2 — Filter Bar (Pill Tabs)
           ══════════════════════════════════════════════════════════════ */}
           <nav
-            aria-label="Filtrer les articles par catégorie"
-            className="flex flex-wrap items-center gap-2 mt-8 mb-6"
+            aria-label="Filtrer les articles"
+            className="flex flex-wrap items-center gap-3 mt-10 mb-8 border-b border-slate-200/60 pb-6"
           >
-            <span className="font-body text-[13px] font-semibold text-slate-500 mr-1">
-              Catégories :
+            <span className="font-body text-[14px] font-bold text-slate-400 uppercase tracking-widest mr-2 hidden sm:block">
+              Explorer
             </span>
             {CATEGORIES.map(cat => {
               const isActive = activeCategory === cat;
               return (
                 <button
                   key={cat}
-                  type="button"
                   onClick={() => setActiveCategory(cat)}
-                  className={`font-body text-[13px] font-medium px-4 py-1.5 rounded-full border transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-apex-blue ${
+                  className={`font-body text-[14px] font-bold px-5 py-2.5 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-apex-blue/50 ${
                     isActive
-                      ? 'bg-apex-blue text-white border-apex-blue shadow-sm'
-                      : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:text-slate-800'
+                      ? 'bg-apex-blue text-white shadow-md shadow-blue-500/20'
+                      : 'bg-white text-slate-600 border border-slate-200 hover:border-blue-200 hover:bg-blue-50 hover:text-apex-blue'
                   }`}
                   aria-pressed={isActive}
                 >
@@ -291,69 +275,70 @@ export default function ArticlesPage() {
                 </button>
               );
             })}
-            <span className="ml-auto font-body text-[12px] text-slate-400">
-              {filtered.length} article{filtered.length !== 1 ? 's' : ''}
-            </span>
+            <div className="ml-auto flex items-center gap-2 font-body text-[13px] font-semibold text-slate-400 bg-white px-3 py-1.5 rounded-lg border border-slate-200">
+               <span className="w-2 h-2 rounded-full bg-emerald-500" />
+               {filtered.length} Résultat{filtered.length !== 1 ? 's' : ''}
+            </div>
           </nav>
 
           {/* ══════════════════════════════════════════════════════════════
-              SECTION 3A — Article Grid (first 3)
+              SECTION 3A — Article Grid (Top Row)
           ══════════════════════════════════════════════════════════════ */}
           {above.length > 0 && (
-            <section aria-label="Articles récents" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <section aria-label="Articles récents" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {above.map(article => (
                 <ArticleCard key={article.id} article={article} />
               ))}
             </section>
           )}
 
-          {/* Show empty state only if NO articles at all */}
+          {/* Empty State */}
           {filtered.length === 0 && (
-            <div className="flex flex-col items-center justify-center py-20 text-center">
-              <div className="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center mb-4">
-                <BookOpen className="w-6 h-6 text-slate-300" strokeWidth={2} />
+            <div className="flex flex-col items-center justify-center py-32 text-center bg-white rounded-3xl border border-dashed border-slate-300">
+              <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-5 border border-slate-100">
+                <BookOpen className="w-8 h-8 text-slate-300" strokeWidth={1.5} />
               </div>
-              <p className="font-heading font-semibold text-apex-dark text-[15px] mb-1">
-                Aucun article dans cette catégorie
+              <p className="font-heading font-black text-slate-800 text-xl mb-2">
+                Aucun article publié
               </p>
-              <p className="font-body text-slate-400 text-sm">
-                Revenez bientôt ou choisissez une autre catégorie.
+              <p className="font-body text-slate-500 text-[15px]">
+                Nous préparons du nouveau contenu pour cette catégorie.
               </p>
             </div>
           )}
 
           {/* ══════════════════════════════════════════════════════════════
-              SECTION 4 — Integration Banner (Vault funnel)
+              SECTION 4 — The Interruption (Vault Funnel)
           ══════════════════════════════════════════════════════════════ */}
           {above.length > 0 && (
             <aside
               aria-label="Accéder au Vault Académique"
-              className="bg-white border border-blue-100 rounded-2xl p-7 md:p-8 mt-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
+              className="bg-gradient-to-r from-[#0a1128] to-apex-blue rounded-[2rem] p-8 md:p-10 mt-16 mb-16 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden"
             >
-              {/* Left */}
-              <div className="flex items-start gap-5">
-                <div className="w-12 h-12 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <BookOpen className="w-6 h-6 text-apex-blue" strokeWidth={1.5} aria-hidden="true" />
+              {/* Decorative elements */}
+              <div className="absolute right-0 top-0 w-64 h-full bg-white/5 skew-x-12 translate-x-1/2 pointer-events-none" />
+              
+              <div className="flex items-center gap-6 relative z-10 w-full md:w-auto">
+                <div className="w-16 h-16 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center flex-shrink-0 backdrop-blur-md">
+                  <TrendingUp className="w-8 h-8 text-amber-400" strokeWidth={2} />
                 </div>
                 <div>
-                  <p className="font-heading font-bold text-apex-dark text-[17px] leading-snug mb-1">
-                    Appliquez ces conseils immédiatement.
+                  <p className="font-heading font-black text-white text-2xl leading-snug mb-2">
+                    Assez de lecture. <span className="text-amber-400">Passez à la pratique.</span>
                   </p>
-                  <p className="font-body text-[13px] text-slate-500 leading-relaxed max-w-lg">
-                    Accédez à tous les anciens examens, TDs et cours dans notre{' '}
-                    <span className="font-semibold text-apex-blue">Vault Académique</span> — 250+ ressources classées par module.
+                  <p className="font-body text-[15px] text-blue-100 leading-relaxed max-w-xl">
+                    Appliquez ces stratégies dès maintenant. Accédez à la plus grande base de données d'anciens examens et TDs de l'ENS Tétouan.
                   </p>
                 </div>
               </div>
 
-              {/* Right CTA */}
               <Link
                 to="/vault"
-                className="inline-flex items-center gap-2 bg-apex-blue text-white font-body font-bold text-[13px] px-6 py-3 rounded-xl hover:bg-[#1d4ed8] transition-colors duration-150 shadow-sm flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-apex-blue focus:ring-offset-2"
+                className="group w-full md:w-auto inline-flex items-center justify-center gap-2 bg-amber-400 text-slate-900 font-body font-black text-[15px] px-8 py-4 rounded-xl hover:bg-amber-300 transition-all duration-300 shadow-lg hover:shadow-amber-400/30 flex-shrink-0 relative z-10 hover:-translate-y-1"
                 aria-label="Ouvrir le Vault Académique"
               >
-                <ExternalLink className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
-                Ouvrir le Vault Académique
+                Accéder au Vault
+                <ExternalLink className="w-5 h-5 group-hover:scale-110 transition-transform" strokeWidth={2.5} />
               </Link>
             </aside>
           )}
@@ -362,15 +347,12 @@ export default function ArticlesPage() {
               SECTION 3B — Remaining articles (below banner)
           ══════════════════════════════════════════════════════════════ */}
           {below.length > 0 && (
-            <section aria-label="Plus d'articles" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8 mb-16">
+            <section aria-label="Plus d'articles" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-20">
               {below.map(article => (
                 <ArticleCard key={article.id} article={article} />
               ))}
             </section>
           )}
-
-          {/* Bottom padding when no below-banner articles */}
-          {below.length === 0 && <div className="pb-16" />}
 
         </div>
       </main>
