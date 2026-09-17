@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import {
   Search, Building2, FileText, MapPin,
-  ArrowRight, Plus, Minus, Phone, ChevronRight,
-  Sparkles, Command, ShieldCheck, Download
+  ArrowRight, Plus, Minus, Phone,
+  Sparkles, Command, ShieldCheck
 } from 'lucide-react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
@@ -260,7 +260,7 @@ export default function HelpPage() {
                 </div>
 
                 <div className="grid gap-4">
-                  {popularGuides.map((guide, i) => (
+                  {popularGuides.map((guide) => (
                     <a
                       key={guide.id}
                       href={`#guide-${guide.id}`}

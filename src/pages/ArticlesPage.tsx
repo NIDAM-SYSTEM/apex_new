@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, Clock, User, BookOpen, ExternalLink, Sparkles, TrendingUp, ChevronRight } from 'lucide-react';
+import { ArrowRight, Clock, User, BookOpen, ExternalLink, Sparkles, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
@@ -102,16 +102,7 @@ const articles: Article[] = [
   },
 ];
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-function categoryColor(cat: string): string {
-  switch (cat) {
-    case 'Méthodologie': return 'text-blue-600 bg-blue-50 border-blue-100';
-    case 'Événements':   return 'text-amber-600 bg-amber-50 border-amber-100';
-    case 'Tech & Code':  return 'text-emerald-600 bg-emerald-50 border-emerald-100';
-    case 'Vie Campus':   return 'text-rose-600 bg-rose-50 border-rose-100';
-    default:             return 'text-slate-600 bg-slate-50 border-slate-200';
-  }
-}
+
 
 // ─── Article Card ─────────────────────────────────────────────────────────────
 function ArticleCard({ article }: { article: Article }) {
